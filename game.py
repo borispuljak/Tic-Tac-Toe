@@ -55,7 +55,7 @@ def player_choice(board):
     return position
 
 def space_check(board, position):
-    return board[position] ==" "
+    return board[position] == " "
 
 def full_check(board):
     for i in range (1,10):
@@ -100,10 +100,31 @@ while True:
             place_selection(board, player1_selection, position)
             if win_check(board, player1_selection):
                 display_board(board)
-                print("Player 1 won the game")
+                print("Player 1 won the game!")
                 game_on = False
+            else:
+                if full_check(board):
+                    display_board(board)
+                    print("Tie!")
+                    game_on = False
+                else:
+                    turn = "Player 2"
         
         elif turn == "Player 2":
+            display_board(board)
+            position = player_choice(board)
+            place_selection(board, player2_selection, position)
+            if win_check(board, player2_selection):
+                display_board(board)
+                print("Player 2 won the game!")
+                game_on = False
+            else:
+                if full_check(board):
+                    display_board(board)
+                    print("Tie!")
+                    game_on = False
+                else:
+                    turn = "Player 1"
 
-        
-        else:
+    if not replay():
+        break
